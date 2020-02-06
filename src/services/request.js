@@ -14,9 +14,20 @@ const attachHeaders = (instance, headers) => {
 
 const request = (config = defaultConfig) => {
   const instance = axios.create(config)
+  console.log(localStorage.getItem('token'))
   attachHeaders(instance, {
     accept: 'application/json',
-    authorization: `Bearer ${localStorage.getItem('token')}`
+    authorization: `Token ${localStorage.getItem('token')}`
+  })
+  return {
+    ...instance
+  }
+}
+
+export const requestWithoutToken = (config = defaultConfig) => {
+  const instance = axios.create(config)
+  attachHeaders(instance, {
+    accept: 'application/json',
   })
   return {
     ...instance

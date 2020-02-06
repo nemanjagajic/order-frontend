@@ -1,4 +1,4 @@
-import request from '../request'
+import {requestWithoutToken} from '../request'
 
 const API_ENDPOINTS = {
   REGISTER: '/api/users/',
@@ -6,7 +6,7 @@ const API_ENDPOINTS = {
 }
 
 class AuthService {
-  register = ({ username, password }) => request.post(API_ENDPOINTS.REGISTER, { username, password })
-  logIn = ({ username, password }) => request.post(API_ENDPOINTS.LOGIN, { username, password })
+  register = ({ username, password }) => requestWithoutToken().post(API_ENDPOINTS.REGISTER, { username, password })
+  logIn = ({ username, password }) => requestWithoutToken().post(API_ENDPOINTS.LOGIN, { username, password })
 }
 export default new AuthService()
