@@ -2,10 +2,9 @@ import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar'
 import { useSelector, useDispatch } from 'react-redux'
 import {
+  clearOpenedRestaurant, clearRestaurantFoods,
   fetchRestaurant,
   fetchRestaurantFoods,
-  setOpenedRestaurant,
-  setRestaurantFoods
 } from '../store/restaurants/restaurantActions'
 import Pin from 'react-ionicons/lib/IosPinOutline'
 
@@ -18,8 +17,8 @@ const RestaurantDetails = props => {
     dispatch(fetchRestaurantFoods(restaurantId))
 
     return () => {
-      dispatch(setOpenedRestaurant(null))
-      dispatch(setRestaurantFoods(null))
+      dispatch(clearOpenedRestaurant())
+      dispatch(clearRestaurantFoods())
     }
   }, [dispatch, props.match.params.id])
 
