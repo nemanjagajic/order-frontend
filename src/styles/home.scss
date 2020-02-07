@@ -37,3 +37,22 @@
     width: 100%
   }
 }
+
+.restaurant-details {
+  .restaurant-title {
+    color: $primary;
+    text-align: center;
+    font-size: 32px;
+    margin: 40px 0 20px;
+  }
+
+  .restaurant-location {
+    text-align: center;
+    color: #808080
+  }
+
+  .restaurant-pin {
+    text-align: center;
+    width: 100%
+  }
+}

@@ -1,7 +1,8 @@
-import { SET_RESTAURANTS } from './restaurantConstats'
+import {SET_OPENED_RESTAURANT, SET_RESTAURANTS} from './restaurantConstats'
 
 const initialState = {
-  restaurants: []
+  restaurants: [],
+  openedRestaurant: null
 }
 
 export default (state = initialState, action) => {
@@ -10,6 +11,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         restaurants: action.payload
+      }
+    case SET_OPENED_RESTAURANT:
+      return {
+        ...state,
+        openedRestaurant: action.payload
       }
     default:
       return state
