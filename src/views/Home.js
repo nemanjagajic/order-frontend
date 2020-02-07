@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
-import { logOut } from '../store/auth/authActions'
 import {fetchRestaurants} from '../store/restaurants/restaurantActions'
 import Navbar from '../components/Navbar'
 import RestaurantList from '../components/RestaurantList'
@@ -11,15 +10,11 @@ const Home = () => {
 
   useEffect(() => {
     dispatch(fetchRestaurants())
-  }, [])
-
-  const handleLogout = () => {
-    dispatch(logOut())
-  }
+  }, [dispatch])
 
   return (
     <div>
-      <Navbar handleLogout={handleLogout}/>
+      <Navbar />
       <div className={'content-wrapper'}>
         <div className={'title'}>Restaurants</div>
         <RestaurantList restaurants={restaurants} />
