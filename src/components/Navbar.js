@@ -19,11 +19,12 @@ const Navbar = () => {
     <div className={'navbar'}>
       <div className={'left'}>
         <div className={'item'} onClick={() => history.push('/')}>Home</div>
+        <div className={'item'} onClick={() => history.push('/orders')}>Orders</div>
       </div>
       <div className={'right'}>
         <div className={'cart'}>
           {isCartFilled() && <div className={'blue-dot'} />}
-          <Cart onClick={() => history.push('/cart')} color={'#555'} fontSize={'30px'} />
+          <Cart onClick={() => history.push('/cart')} color={'#737373'} fontSize={'30px'} />
         </div>
         <div className={'item'} onClick={handleLogout}>Logout</div>
       </div>

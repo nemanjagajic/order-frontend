@@ -5,6 +5,7 @@ import Home from './views/Home'
 import Auth from './views/auth/Auth'
 import RestaurantDetails from './views/RestaurantDetails'
 import Cart from './views/Cart'
+import Orders from './views/Orders'
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
       <PrivateRoute exact path='/' component={Home} />
       <PrivateRoute path={'/restaurants/:id'} component={RestaurantDetails} />
       <PrivateRoute path={'/cart'} component={Cart} />
+      <PrivateRoute path={'/orders'} component={Orders} />
     </div>
   )
 }

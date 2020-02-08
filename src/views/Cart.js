@@ -1,7 +1,13 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { useHistory } from 'react-router'
 import Navbar from '../components/Navbar'
+import {makeOrder} from '../store/order/orderActions'
 
 const Cart = () => {
+  const dispatch = useDispatch()
+  const history = useHistory()
+
   const [cart, setCart] = useState({ ...JSON.parse(localStorage.getItem('cart')) })
 
   const removeFromCart = restaurantId => {
@@ -9,6 +15,19 @@ const Cart = () => {
     const newCart = JSON.parse(JSON.stringify(cart))
     localStorage.setItem('cart', JSON.stringify(newCart))
     setCart(newCart)
+  }
+
+  const handleMakeOrder = (restaurantId, foodOrders) => {
+    dispatch(makeOrder({
+      restaurantId,
+      foodOrders,
+      clearCartAndNavigateToOrders: () => clearCartAndNavigateToOrders(restaurantId)
+    }))
+  }
+
+  const clearCartAndNavigateToOrders = restaurantId => {
+    removeFromCart(restaurantId)
+    history.push('/orders')
   }
 
   const renderCartItems = () => {
@@ -40,8 +59,12 @@ const Cart = () => {
             <div>{`=${totalSum} din`}</div>
           </div>
           <div>
-            <button className={'order-button'}>Order</button>
-            <button onClick={() => removeFromCart(restaurantId)} className={'remove-button'}>Remove</button>
+            <button
+              onClick={() => handleMakeOrder(restaurantId, cart[restaurantId])}
+              className={'order-button'}>Order</button>
+            <button
+              onClick={() => removeFromCart(restaurantId)}
+              className={'remove-button'}>Remove</button>
           </div>
         </div>
       ))

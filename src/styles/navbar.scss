@@ -9,7 +9,7 @@
   padding: 0 10px;
 
   .item {
-    padding: 10px;
+    padding: 10px 20px;
     cursor: pointer;
   }
 
@@ -24,6 +24,12 @@
       background-color: $primary;
       border-radius: 50%;
     }
+  }
+
+  .left {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   .right {
