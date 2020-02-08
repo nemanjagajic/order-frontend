@@ -32,6 +32,7 @@ export function* logOut() {
   try {
     localStorage.removeItem('token')
     localStorage.removeItem('username')
+    localStorage.removeItem('cart')
     yield put(setUser({ username: null, token: null }))
   } catch (e) {
     console.log(e)

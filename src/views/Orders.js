@@ -16,9 +16,8 @@ const Orders = () => {
   return (
     <div>
       <Navbar />
-      {console.log(orders)}
       <div className={'content-wrapper'}>
-        <div className={'title'}>Orders</div>
+        <div className={'title'}>My Orders</div>
         <OrderList orders={orders} />
       </div>
     </div>

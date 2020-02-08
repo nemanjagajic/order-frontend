@@ -13,7 +13,8 @@ const Navbar = () => {
     dispatch(logOut())
   }
 
-  const isCartFilled = () => localStorage.getItem('cart') !== '{}'
+  const isCartFilled = () => localStorage.getItem('cart')
+    && localStorage.getItem('cart') !== '{}'
 
   return (
     <div className={'navbar'}>
