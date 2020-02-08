@@ -54,6 +54,27 @@ const RestaurantDetails = props => {
     if (window.scrollY < HEADER_HEIGHT) setIsNavVisible(true)
   }
 
+  const handleAddToCart = () => {
+    const orderFoods = []
+    for (const key in selectedFood) {
+      const {id, name, price} = foods.find(f => key.toString() === f.id.toString())
+      orderFoods.push({
+        id,
+        name,
+        price,
+        count: selectedFood[key]
+      })
+    }
+
+    const cart = {
+      ...JSON.parse(localStorage.getItem('cart')),
+      [restaurant.id]: orderFoods
+    }
+    localStorage.setItem('cart', JSON.stringify(cart))
+
+    setSelectedFood({})
+  }
+
   const getItemsNumber = () => Object.values(selectedFood).reduce((a, b) => a + b)
   return (
     <div>
@@ -62,7 +83,7 @@ const RestaurantDetails = props => {
         <div className={'restaurant-details'}>
           {isFoodSelected && (
             <div className={isNavVisible ? 'cart-buttons-wrapper-offset' : 'cart-buttons-wrapper'}>
-              <button className={'add-button'}>
+              <button onClick={handleAddToCart} className={'add-button'}>
                 {`Add to cart (${getItemsNumber()} ${getItemsNumber() === 1 ? 'item' : 'items'})`}
               </button>
               <button className={'clear-button'} onClick={() => setSelectedFood({})}>Clear</button>
