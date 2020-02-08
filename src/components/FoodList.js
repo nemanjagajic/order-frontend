@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { memo } from 'react'
 import FoodItem from './FoodItem'
 
-const FoodList = ({ foods, addFood, removeFood, selectedFood }) => {
+const FoodList = memo(({ foods, addFood, removeFood, selectedFood }) => {
   return (
     <div className={'food-list'}>
       {foods.map(food => (
@@ -16,6 +16,6 @@ const FoodList = ({ foods, addFood, removeFood, selectedFood }) => {
       ))}
     </div>
   )
-}
+})
 
 export default FoodList

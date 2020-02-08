@@ -1,0 +1,106 @@
+.restaurant-details {
+  margin-bottom: 50px;
+
+  .restaurant-title {
+    color: $primary;
+    text-align: center;
+    font-size: 32px;
+    margin: 40px 0 20px;
+  }
+
+  .restaurant-location {
+    text-align: center;
+    color: #808080
+  }
+
+  .restaurant-pin {
+    text-align: center;
+    width: 100%
+  }
+
+  .food-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .food-item {
+    background-color: #f2f2f2;
+    width: 300px;
+    padding: 20px;
+    margin: 10px;
+    border-radius: 20px;
+    color: #808080;
+    font-size: 16px;
+    text-align: center;
+    cursor: pointer;
+
+    .title {
+      font-size: 18px;
+      padding-bottom: 0px;
+    }
+  }
+
+  .food-item-selected {
+    @extend .food-item;
+    background-color: $primary;
+    color: #ffffff;
+    cursor: default;
+  }
+
+  .counter {
+    margin: 20px 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .food-button {
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+    cursor: pointer;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    font-size: 18px;
+    border: none;
+    color: $primary;
+  }
+
+  .cart-buttons-wrapper {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+
+    button {
+      border: 1px solid #cccccc;
+      padding: 20px;
+      margin: 5px;
+      border-radius: 20px;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .add-button {
+      background-color: $primary;
+      color: #ffffff;
+      border: 1px solid $primary;
+      min-width: 185px;
+    }
+
+    .clear-button {
+      color: #808080;
+      border: 1px solid #cccccc;
+    }
+  }
+
+  .cart-buttons-wrapper-offset {
+    @extend .cart-buttons-wrapper;
+    position: absolute;
+    top: 80px;
+  }
+}

@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import Navbar from '../components/Navbar'
 import { useSelector, useDispatch } from 'react-redux'
 import {
@@ -8,9 +8,17 @@ import {
 } from '../store/restaurants/restaurantActions'
 import Pin from 'react-ionicons/lib/IosPinOutline'
 import FoodList from '../components/FoodList'
+import { HEADER_HEIGHT } from '../constants'
 
 const RestaurantDetails = props => {
   const dispatch = useDispatch()
+
+  const [selectedFood, setSelectedFood] = useState({})
+  const [isNavVisible, setIsNavVisible] = useState(true)
+  const isFoodSelected = Object.entries(selectedFood).length !== 0
+
+  const restaurant = useSelector(state => state.restaurant.openedRestaurant)
+  const foods = useSelector(state => state.restaurant.foods)
 
   useEffect(() => {
     const restaurantId = props.match.params.id
@@ -23,29 +31,43 @@ const RestaurantDetails = props => {
     }
   }, [dispatch, props.match.params.id])
 
-  const restaurant = useSelector(state => state.restaurant.openedRestaurant)
-  const foods = useSelector(state => state.restaurant.foods)
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
-  const [selectedFood, setSelectedFood] = useState({})
-
-  const addFood = foodId => {
+  const addFood = useCallback(foodId => {
     if (!selectedFood[foodId]) selectedFood[foodId] = 0
     selectedFood[foodId]++
     setSelectedFood(JSON.parse(JSON.stringify(selectedFood)))
-  }
+  }, [selectedFood])
 
-  const removeFood = foodId => {
+  const removeFood = useCallback(foodId => {
     if (!selectedFood[foodId]) return
     selectedFood[foodId]--
     if (selectedFood[foodId] === 0) delete selectedFood[foodId]
     setSelectedFood(JSON.parse(JSON.stringify(selectedFood)))
+  }, [selectedFood])
+
+  const handleScroll = () => {
+    if (window.scrollY > HEADER_HEIGHT) setIsNavVisible(false)
+    if (window.scrollY < HEADER_HEIGHT) setIsNavVisible(true)
   }
 
+  const getItemsNumber = () => Object.values(selectedFood).reduce((a, b) => a + b)
   return (
     <div>
       <Navbar />
       {restaurant && (
         <div className={'restaurant-details'}>
+          {isFoodSelected && (
+            <div className={isNavVisible ? 'cart-buttons-wrapper-offset' : 'cart-buttons-wrapper'}>
+              <button className={'add-button'}>
+                {`Add to cart (${getItemsNumber()} ${getItemsNumber() === 1 ? 'item' : 'items'})`}
+              </button>
+              <button className={'clear-button'} onClick={() => setSelectedFood({})}>Clear</button>
+            </div>
+          )}
           <div className={'restaurant-title'}>{restaurant.name}</div>
           <div className={'restaurant-location'}>{restaurant.location}</div>
           <Pin className={'restaurant-pin'} color={'#42A5F5'} fontSize={'40px'} />
