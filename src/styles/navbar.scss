@@ -16,6 +16,14 @@
   .cart {
     margin-right: 20px;
     cursor: pointer;
+
+    .blue-dot {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: $primary;
+      border-radius: 50%;
+    }
   }
 
   .right {

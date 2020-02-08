@@ -13,13 +13,18 @@ const Navbar = () => {
     dispatch(logOut())
   }
 
+  const isCartFilled = () => localStorage.getItem('cart') !== '{}'
+
   return (
     <div className={'navbar'}>
       <div className={'left'}>
         <div className={'item'} onClick={() => history.push('/')}>Home</div>
       </div>
       <div className={'right'}>
-        <Cart className={'cart'} color={'#555'} fontSize={'30px'} />
+        <div className={'cart'}>
+          {isCartFilled() && <div className={'blue-dot'} />}
+          <Cart onClick={() => history.push('/cart')} color={'#555'} fontSize={'30px'} />
+        </div>
         <div className={'item'} onClick={handleLogout}>Logout</div>
       </div>
     </div>

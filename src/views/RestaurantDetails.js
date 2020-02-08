@@ -54,7 +54,7 @@ const RestaurantDetails = props => {
     if (window.scrollY < HEADER_HEIGHT) setIsNavVisible(true)
   }
 
-  const handleAddToCart = () => {
+  const addToCart = () => {
     const orderFoods = []
     for (const key in selectedFood) {
       const {id, name, price} = foods.find(f => key.toString() === f.id.toString())
@@ -62,7 +62,8 @@ const RestaurantDetails = props => {
         id,
         name,
         price,
-        count: selectedFood[key]
+        count: selectedFood[key],
+        restaurantTitle: restaurant.name + ', ' + restaurant.location
       })
     }
 
@@ -83,7 +84,7 @@ const RestaurantDetails = props => {
         <div className={'restaurant-details'}>
           {isFoodSelected && (
             <div className={isNavVisible ? 'cart-buttons-wrapper-offset' : 'cart-buttons-wrapper'}>
-              <button onClick={handleAddToCart} className={'add-button'}>
+              <button onClick={addToCart} className={'add-button'}>
                 {`Add to cart (${getItemsNumber()} ${getItemsNumber() === 1 ? 'item' : 'items'})`}
               </button>
               <button className={'clear-button'} onClick={() => setSelectedFood({})}>Clear</button>
