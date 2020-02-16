@@ -1,5 +1,4 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import Navbar from '../components/Navbar'
 import { useSelector, useDispatch } from 'react-redux'
 import {
   clearOpenedRestaurant, clearRestaurantFoods,
@@ -79,7 +78,6 @@ const RestaurantDetails = props => {
   const getItemsNumber = () => Object.values(selectedFood).reduce((a, b) => a + b)
   return (
     <div>
-      <Navbar />
       {restaurant && (
         <div className={'restaurant-details'}>
           {isFoodSelected && (

@@ -1,5 +1,5 @@
 import React from 'react';
-import {logOut} from '../store/auth/authActions'
+import { logOut } from '../store/auth/authActions'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import Cart from 'react-ionicons/lib/IosCartOutline'
