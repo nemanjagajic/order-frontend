@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router'
 import {makeOrder} from '../store/order/orderActions'
+import Navbar from '../components/Navbar'
 
 const Cart = () => {
   const dispatch = useDispatch()
@@ -75,6 +76,7 @@ const Cart = () => {
   return (
     <div>
       <div className={'content-wrapper'}>
+        <Navbar />
         <div className={'cart-title'}>Cart</div>
         {renderCartItems()}
       </div>

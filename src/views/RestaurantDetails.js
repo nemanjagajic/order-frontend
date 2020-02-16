@@ -8,6 +8,7 @@ import {
 import Pin from 'react-ionicons/lib/IosPinOutline'
 import FoodList from '../components/FoodList'
 import { HEADER_HEIGHT } from '../constants'
+import Navbar from '../components/Navbar'
 
 const RestaurantDetails = props => {
   const dispatch = useDispatch()
@@ -78,6 +79,7 @@ const RestaurantDetails = props => {
   const getItemsNumber = () => Object.values(selectedFood).reduce((a, b) => a + b)
   return (
     <div>
+      <Navbar />
       {restaurant && (
         <div className={'restaurant-details'}>
           {isFoodSelected && (
